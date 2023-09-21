@@ -9,3 +9,10 @@ actions:
           - "*"
     bazel_commands:
         - "build //..."
+  - name: "Deploy"
+    triggers:
+      push:
+        branches:
+          - "main"
+    bazel_commands:
+        - "run :deploy"

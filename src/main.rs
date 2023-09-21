@@ -1,22 +1,19 @@
-// Copyright 2015 The Bazel Authors. All rights reserved.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//    http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
-extern crate hello_lib;
-
-use hello_lib::greeter;
-
+use std::io::prelude::*;
+use std::net::TcpListener;
+use std::net::TcpStream;
 fn main() {
-    let hello = greeter::Greeter::new("Hello");
-    hello.greet("world");
+    const HOST : &str ="127.0.0.1";
+    const PORT : &str ="8080";
+    let endpoint : String = HOST.to_owned() + ":" +  PORT;
+    let listener = TcpListener::bind(endpoint).unwrap();
+    println!("listening on port {}",PORT);
+    for stream in listener.incoming() {
+        let _stream = stream.unwrap();
+        handle_connection(_stream);
+    }
+}
+fn handle_connection(mut stream: TcpStream) {
+    let mut buffer = [0; 1024];
+    stream.read(&mut buffer).unwrap();
+    println!("Request: {}", String::from_utf8_lossy(&buffer[..]));
 }

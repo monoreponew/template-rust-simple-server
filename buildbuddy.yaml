@@ -8,11 +8,11 @@ actions:
         branches:
           - "*"
     bazel_commands:
-        - "build //..."
+        - "build //... --config=workflows"
   - name: "Deploy"
     triggers:
       push:
         branches:
           - "main"
     bazel_commands:
-        - "run :deploy"
+        - "run :deploy --config=workflows"

@@ -15,7 +15,7 @@ load("@io_bazel_rules_docker//rust:image.bzl", "rust_image")
 
 rust_image(
     name = "rust_image",
-    srcs = ["src/main.rs"],
+    binary = ":hello_world",
 )
 
 run_all(

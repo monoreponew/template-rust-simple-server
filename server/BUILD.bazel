@@ -15,6 +15,6 @@ rust_image(
 )
 
 deploy(
-    name="rust_server_service",
+    name="rust_service",
     target=":server_image",
 )

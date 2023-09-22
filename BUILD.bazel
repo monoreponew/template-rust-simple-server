@@ -16,7 +16,7 @@ load("@io_bazel_rules_docker//rust:image.bzl", "rust_image")
 
 rust_image(
     name = "rust_image",
-    base = ":docker_base",
+    #base = ":docker_base",
     binary = ":hello_world",
 )
 

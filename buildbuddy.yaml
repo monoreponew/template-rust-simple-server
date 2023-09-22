@@ -17,4 +17,4 @@ actions:
         branches:
           - "main"
     bazel_commands:
-        - "run :deploy --config=workflows"
+        - "run //server:deploy --config=workflows"

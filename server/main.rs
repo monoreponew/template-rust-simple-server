@@ -2,7 +2,7 @@ use std::io::prelude::*;
 use std::net::TcpListener;
 use std::net::TcpStream;
 fn main() {
-    const HOST : &str ="127.0.0.1";
+    const HOST : &str ="0.0.0.0";
     const PORT : &str ="8080";
     let endpoint : String = HOST.to_owned() + ":" +  PORT;
     let listener = TcpListener::bind(endpoint).unwrap();

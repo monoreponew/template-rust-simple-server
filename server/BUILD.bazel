@@ -1,5 +1,4 @@
 load("@rules_rust//rust:defs.bzl", "rust_binary")
-load("@io_bazel_rules_docker//container:container.bzl", "container_image")
 load("@genrules//gcloud:index.bzl", "gcloud_run_deploy", "gcloud_services_enable", "gcloud_auth", "gcloud_auth_print_access_token")
 load("@genrules//run_all:index.bzl", "run_all")
 load("@genrules//run_if:index.bzl", "run_if")
@@ -8,26 +7,15 @@ load("@genrules//crane:index.bzl", "crane_auth_login", "crane_push")
 package(default_visibility = ["//visibility:public"])
 
 rust_binary(
-    name = "hello_world",
-    srcs = ["src/main.rs"],
+    name = "server",
+    srcs = ["main.rs"],
 )
 
 load("@io_bazel_rules_docker//rust:image.bzl", "rust_image")
 
 rust_image(
     name = "rust_image",
-    #base = ":docker_base",
-    binary = ":hello_world",
-)
-
-container_image(
-  name = "docker_base",
-  base = "@cc_image_base//image",
-  ports = [
-    "8080/tcp",
-  ],
-  docker_run_flags = "--init --rm -p 8080:8080",
-  legacy_run_behavior = False,
+    binary = ":server",
 )
 
 run_all(

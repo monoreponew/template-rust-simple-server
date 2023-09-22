@@ -51,9 +51,9 @@ _rust_image_repos()
 http_archive(
     name="genrules",
     urls=[
-        "https://github.com/genrules/genrules/archive/0edde63601e5ca00dbab55c167e4a7b1e4e8bc72.zip",
+        "https://github.com/genrules/genrules/archive/69696cdeaf0e383b0243e71ce2a2c589cf6582bd.zip",
     ],
-    strip_prefix="genrules-0edde63601e5ca00dbab55c167e4a7b1e4e8bc72",
+    strip_prefix="genrules-69696cdeaf0e383b0243e71ce2a2c589cf6582bd",
 )
 
 load("@genrules//gcloud:index.bzl", "gcloud_download")

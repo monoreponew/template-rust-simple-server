@@ -14,21 +14,3 @@ rules_rust_dependencies()
 rust_register_toolchains(
     edition = "2021",
 )
-
-# Genrules
-
-http_archive(
-    name="genrules",
-    urls=[
-        "https://github.com/genrules/genrules/archive/789b95e2557116d8977fc5850b320b8ad542f3e6.zip",
-    ],
-    strip_prefix="genrules-789b95e2557116d8977fc5850b320b8ad542f3e6",
-)
-
-load("@genrules//gcloud:index.bzl", "gcloud_download")
-
-gcloud_download()
-
-load("@genrules//crane:index.bzl", "crane_download")
-
-crane_download()
